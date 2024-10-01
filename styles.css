@@ -1,0 +1,237 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #e0f7fa, #80deea);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #0056b3;
+}
+
+.water-meter {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.inner-circle h2 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+.points-section {
+    text-align: center;
+}
+
+.points {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+.buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.buttons .btn {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Added transform for active state */
+}
+
+.buttons .btn:hover {
+    background-color: #388e3c;
+}
+
+.buttons .btn:active {
+    transform: scale(0.98); /* Slightly shrink button on click */
+}
+
+.education-section,
+.about-section,
+.settings-section {
+    margin: 20px 0;
+}
+
+.video {
+    text-align: center;
+}
+
+.charts {
+    margin: 20px 0;
+}
+
+canvas {
+    margin: 10px;
+    border: 1px solid #ccc;
+}
+
+.faq-section {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.faq-item {
+    margin: 10px 0;
+}
+
+.faq-question {
+    cursor: pointer;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.faq-answer {
+    display: none;
+    padding: 5px 0;
+    color: #333;
+}
+
+.blog-section {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.blog-post {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-summary {
+    color: #666;
+}
+
+.read-more-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+    background-color: #0056b3;
+}
+
+.share-section {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.share-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.share-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .buttons .btn {
+        width: 100%; /* Full-width buttons on small screens */
+    }
+}
+
+.btn {
+    -webkit-border-radius: 5px; /* For Safari */
+    -moz-border-radius: 5px;    /* For Firefox */
+    border-radius: 5px;         /* Standard */
+}
+
+.quotes-section {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#quote-text {
+    font-size: 18px;
+    color: #333;
+    font-style: italic;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water Meter - Sign In / Sign Up</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4caf50 30%, #2e7d32 100%);
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #2e7d32;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin: 20px 0;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .toggle-link, .forgot-link {
+            color: #4caf50;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .toggle-link:hover, .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-link {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="signup-form">
+        <h1>Smart Water Meter</h1>
+        <h2>Create Account</h2>
+        <div class="error" id="signup-error"></div>
+        <form id="signup">
+            <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
+            <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
+            <input type="password" class="input-field" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            <button class="btn" id="signup-btn" type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <span class="toggle-link" id="login-link">Log in here</span></p>
+    </div>
+
+    <div class="container" id="login-form" style="display: none;">
+        <h1>Smart Water Meter</h1>
+        <h2>Login</h2>
+        <div class="error" id="login-error"></div>
+        <form id="login">
+            <input type="text" class="input-field" id="login-username" name="username" placeholder="Username" required>
+            <input type="password" class="input-field" id="login-password" name="password" placeholder="Password" required>
+            <button class="btn" id="login-btn" type="submit">Login</button>
+        </form>
+        <p><span class="forgot-link" id="forgot-link">Forgot Password?</span></p>
+        <p>Don't have an account? <span class="toggle-link" id="signup-link">Sign up here</span></p>
+    </div>
+
+    <script>
+        // Toggle between Sign Up and Login forms
+        const signupForm = document.getElementById("signup-form");
+        const loginForm = document.getElementById("login-form");
+        const loginLink = document.getElementById("login-link");
+        const signupLink = document.getElementById("signup-link");
+
+        loginLink.addEventListener("click", () => {
+            signupForm.style.display = "none";
+            loginForm.style.display = "block";
+        });
+
+        signupLink.addEventListener("click", () => {
+            loginForm.style.display = "none";
+            signupForm.style.display = "block";
+        });
+
+        // Handle Sign-up form submission with AJAX (fetch)
+        document.getElementById("signup").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirmPassword = document.getElementById("confirm-password").value.trim();
+            const signupError = document.getElementById("signup-error");
+
+            if (password !== confirmPassword) {
+                signupError.innerHTML = "Passwords do not match.";
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3001/register', { // Updated URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) { // Check if response is OK
+                    alert(result.message);
+                    window.location.href = "index2.html"; // Redirect on success
+                } else {
+                    signupError.innerHTML = result.message; // Display error message
+                }
+            } catch (error) {
+                signupError.innerHTML = "An error occurred during sign up.";
+            }
+        });
+
+        // Handle Login form submission with AJAX (fetch)
+        document.getElementById("login").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const username = document.getElementById("login-username").value.trim();
+            const password = document.getElementById("login-password").value.trim();
+            const loginError = document.getElementById("login-error");
+
+            try {
+                const response = await fetch('http://localhost:3001/login', { // Correct URL for login
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) { // Check if response is OK
+                    alert(result.message);
+                    window.location.href = "index2.html"; // Redirect on success
+                } else {
+                    loginError.innerHTML = result.message; // Display error message
+                }
+            } catch (error) {
+                loginError.innerHTML = "An error occurred during login.";
+            }
+        });
+    </script>
+</body>
+</html>

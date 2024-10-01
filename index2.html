@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water Meter App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for blog section */
+        .blog-section {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .blog-post {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .post-summary {
+            color: #666;
+        }
+
+        .post-description {
+            display: none; /* Initially hidden */
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .read-more-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Smart Water Meter</h1>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Section -->
+        <div class="water-meter">
+            <div class="circle">
+                <div class="inner-circle">
+                    <h2 id="water-used">0L</h2>
+                    <p>Water Used</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="points-section">
+            <h2>Eco Points Earned</h2>
+            <span class="points" id="eco-points">0</span>
+        </div>
+        <div class="quotes-section">
+    <div id="quote-display">
+        <p id="quote-text">"Water is the driving force of all nature." - Leonardo da Vinci</p>
+    </div>
+</div>
+
+        
+        <div class="share-section">
+            <h2>Share Your Achievements!</h2>
+            <p>You've earned <span id="eco-points-share">You've earned 0 Eco Points!</span></p>
+            <button id="share-facebook" class="share-btn">Share on Facebook</button>
+            <button id="share-twitter" class="share-btn">Share on Twitter</button>
+            <button id="share-whatsapp" class="share-btn">Share on WhatsApp</button>
+        </div>
+
+        <div class="buttons">
+            <button class="btn" id="daily-usage-btn">Daily Usage</button>
+            <button class="btn" id="monthly-report-btn">Monthly Report</button>
+            <button class="btn" id="view-history-btn">View History</button>
+        </div>
+        
+        <!-- Chart Section -->
+        <div class="charts">
+            <h2>Water Usage Charts</h2>
+            <canvas id="dailyUsageChart" width="400" height="200"></canvas>
+            <canvas id="weeklyUsageChart" width="400" height="200"></canvas>
+            <canvas id="monthlyUsageChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div class="faq-item">
+                <h3 class="faq-question">What is water conservation?</h3>
+                <p class="faq-answer">Water conservation is the practice of using water efficiently to reduce unnecessary water usage. It helps to ensure that water supplies are sustainable for future generations.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How can I save water at home?</h3>
+                <p class="faq-answer">You can save water by fixing leaks, using water-efficient appliances, taking shorter showers, and turning off the tap while brushing your teeth.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How does this app help me?</h3>
+                <p class="faq-answer">This app helps you track your daily water usage, view reports, and encourages you to conserve water by earning eco points for reducing your usage.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How can I record my water usage?</h3>
+                <p class="faq-answer">You can record your daily water usage by clicking on the "Daily Usage" button and entering the amount of water used.</p>
+            </div>
+        </div>
+
+        <div class="blog-section">
+            <h2>Blog on Water Conservation</h2>
+            
+            <div class="blog-post">
+                <h3 class="post-title">10 Simple Ways to Save Water at Home</h3>
+                <p class="post-summary">
+                <div class="post-description">1.Fix Leaks: Check for leaks in faucets, toilets, and pipes. Even small drips can waste a lot of water over time.
+
+                    <br>2.Install Water-Efficient Fixtures: Use water-saving showerheads, faucets, and toilets. Low-flow fixtures reduce water usage without sacrificing performance.
+                    
+                    <br>3.Turn Off the Tap While Brushing Teeth: Don’t let the water run while brushing your teeth, shaving, or washing your hands. Turn it off when not in use.
+                    
+                    <br> 4.Shorten Showers: Aim to keep showers under 5 minutes. You can set a timer to help manage your time.
+                    
+                    <br>5. Use a Bucket Instead of a Hose: When washing your car or watering plants, use a bucket or watering can instead of a running hose.
+                    
+                    <br>6.Run Full Loads in Dishwashers and Washing Machines: Only run these appliances when fully loaded to maximize water efficiency.
+                    
+                    <br>7.Collect Rainwater: Use a rain barrel to collect water for gardening and outdoor cleaning.
+                    
+                    <br> 8.Water Plants Early or Late: Water plants in the early morning or late evening to reduce evaporation.
+                    
+                    <br>9.Use a Broom, Not a Hose, to Clean Driveways: Sweep driveways, sidewalks, and patios instead of hosing them down.
+                    
+                    <br>10.Cover Pools to Reduce Evaporation: Use a pool cover when not in use to prevent water loss due to evaporation.</p></div>
+                <button class="read-more-btn" onclick="toggleDescription(this)">Read More</button>
+            </div>
+            
+            <div class="blog-post">
+                <h3 class="post-title">The Importance of Water Conservation</h3>
+                <p class="post-summary"></p>
+                <div class="post-description">Water conservation is essential for sustaining life, protecting ecosystems, and ensuring a reliable supply for future generations. Despite covering most of the Earth's surface, only a small fraction of water is freshwater accessible for human use. Conserving water helps protect natural habitats, supports agriculture, and prevents shortages, especially in areas prone to drought. It also reduces energy consumption associated with water treatment and distribution, cutting down greenhouse gas emissions. Water conservation is a critical aspect of sustainable living, helping to maintain water quality, save money, and adapt to the changing climate. Every drop saved contributes to a healthier and more resilient planet.</div>
+                <button class="read-more-btn" onclick="toggleDescription(this)">Read More</button>
+            </div>
+
+            <div class="blog-post">
+                <h3 class="post-title">How Water Waste Affects the Environment</h3>
+                <p class="post-summary">Understand the impact of water waste on our ecosystems and communities.</p>
+                <div class="post-description">
+                    Water waste has significant environmental impacts, including depleting natural water resources and damaging ecosystems. Excessive water use strains rivers, lakes, and groundwater supplies, leading to lower water levels and harming aquatic habitats. This disrupts ecosystems, threatening the survival of fish, plants, and other wildlife. Water waste also increases the demand for energy-intensive water treatment and distribution processes, contributing to higher carbon emissions and exacerbating climate change. Additionally, overuse of water often leads to pollution, as wastewater and contaminants are released into the environment, degrading water quality and posing risks to human health and wildlife. Reducing water waste is crucial for protecting natural resources and preserving the environment.</div>
+                <button class="read-more-btn" onclick="toggleDescription(this)">Read More</button>
+            </div>
+        </div>
+
+        <!-- Educational Section -->
+        <div class="education-section" id="home">
+            <h2>Water Conservation Tips & Videos</h2>
+
+            <!-- Video Embed -->
+            <div class="video">
+                <iframe width="330" height="315" src="https://www.youtube.com/embed/C65iqOSCZOY?si=p14xXZxuH5eBjLyq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div class="about-section" id="about">
+            <h2>About Us</h2>
+            <p>We are committed to helping users save water and earn rewards for their conservation efforts. Our app monitors real-time water usage, offers tips for saving water, and helps you reduce your environmental footprint.</p>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="settings-section" id="settings">
+            <h2>Settings</h2>
+            <p>Adjust your preferences here:</p>
+            <button class="btn">Change Notifications</button>
+            <button class="btn">Update Profile</button>
+            <button class="btn">App Settings</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for toggling descriptions -->
+    <script>
+        function toggleDescription(button) {
+            const postDescription = button.previousElementSibling; // Get the post description
+            if (postDescription.style.display === "none" || postDescription.style.display === "") {
+                postDescription.style.display = "block"; // Show description
+                button.textContent = "Read Less"; // Change button text
+            } else {
+                postDescription.style.display = "none"; // Hide description
+                button.textContent = "Read More"; // Change button text back
+            }
+        }
+        
+    </script>
+
+    <!-- Link to JavaScript file -->
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<script>
+    const quotes = [
+        "Water is the driving force of all nature. - Leonardo da Vinci",
+        "Thousands have lived without love, not one without water. - W.H. Auden",
+        "The next war will be fought over water. - Ismail Serageldin",
+        "No water, no life. No blue, no green. - Sylvia A. Earle",
+        "Water is life’s matter and matrix, mother and medium. - Albert Szent-Györgyi",
+        "We won't have a society if we destroy the environment. - Margaret Mead"
+    ];
+
+    let currentQuoteIndex = 0;
+
+    function displayQuote() {
+        document.getElementById('quote-text').textContent = quotes[currentQuoteIndex];
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length; // Loop back to the start
+    }
+
+    // Display a new quote every 4 seconds
+    setInterval(displayQuote, 4000);
+
+    // Initial quote display
+    displayQuote();
+</script>
+
+
+</body>
+</html>
